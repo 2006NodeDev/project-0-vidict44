@@ -1,0 +1,21 @@
+get to reimbursement with userId for postman
+http://localhost:2007/reimbursement/user/2 
+
+get to reimbursement with statusId for postman
+http://localhost:2007/reimbursement/status/2 
+http://localhost:2007/reimbursement/status/1 
+
+post to reimbursement for postman 
+{  
+       "author" : 1,
+        "amount": 50,
+        "dateSubmitted": 2020,
+        "dateResolved": 2020,
+        "description": "Parchment Paper",
+        "resolver": 1,
+        "status": 2,
+        "type": 4}
+
+
+
+update reimbursement for postman
