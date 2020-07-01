@@ -22,15 +22,15 @@ app.use(loggingMiddleware)// we use use to match everything, no path to match al
 //middleware for tracking connections to our server
 app.use(sessionMiddleware)
 
-//app.use(authenticationMiddleware) this makes us unable to login oops!
 
-app.use('/reimbursement', reimbursementRouter)// redirect all requests on /books to the router
+
+app.use('/reimbursement', reimbursementRouter)
 app.use('/users', userRouter)// redirect all requests on /users to the router
 
 
 // an endpoint that unathenticated users can send credentials to to recieve authentication
 app.post('/login', async (req:Request, res:Response, next:NextFunction)=>{
-    // you could use destructuring, see ./routers/book-router
+    
     let username = req.body.username
     let password = req.body.password
     // if I didn't get a usrname/password send an error and say give me both fields

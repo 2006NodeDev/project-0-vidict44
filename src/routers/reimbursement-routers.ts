@@ -21,7 +21,7 @@ reimbursementRouter.get('/status/:statusId', async (req: Request, res: Response,
 
 })
 
-// for saving a new book
+
 // this endpoint will run all the middleware functions one at a time
 reimbursementRouter.post('/', async (req: Request, res: Response, next: NextFunction) => {
     console.log(req.body);//lets look at what the request body looks like
@@ -38,8 +38,7 @@ reimbursementRouter.post('/', async (req: Request, res: Response, next: NextFunc
         
     // warning if data is allowed to be null or 0, or false, this check is not sufficient
     if (author && amount && dateSubmitted && dateResolved && description && resolver && status && type) {
-        //books.push({ bookId, genre, authors, publisher, publishingDate, pages, chapters, title, series, numberInSeries, ISBN })
-        //sendStatus just sents an empty response with the status code provided
+        
         let savedreimbursement: Reimbursement={
             reimbursementId: 0,
             author,
@@ -71,9 +70,6 @@ reimbursementRouter.post('/', async (req: Request, res: Response, next: NextFunc
 // express takes the value in the : and puts it on the request object
 reimbursementRouter.get('/:id', async (req: Request, res: Response, next:NextFunction) => {
     let { id } = req.params// destructring
-    //goal is to return a specific book that matches the id we got
-    // the id could be bad - string instead of a number -- BookIdInputError
-    // the id could not exist -- BookNotFound
     if (isNaN(+id)) {// we can use the + to convert a variable to a number - node says do it this way
         next(new ReimbursementInputError())//we didn't get a number in the path
     } else {

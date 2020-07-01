@@ -13,12 +13,7 @@ userRouter.use(authenticationMiddleware)
 
 // Get all
 userRouter.get('/', authorizationMiddleware(['Admin']), async (req: Request, res: Response, next: NextFunction) => {
-    //this function needs to get all the user data - outside its scope 
-    // we should call a function that gets us the user data
-    //if we get it successfully, we want to return it using res.json
-    //if we get an error we want to pass that error to the error handler with next(err)
-    // interacting with the database is asynchronous, which means the getAllUser function returns a promise
-    // can this function execute with only a promise?
+ 
     try {
         //lets try not being async and see what happens
         let allUsers = await getAllUsers()//thinking in abstraction
