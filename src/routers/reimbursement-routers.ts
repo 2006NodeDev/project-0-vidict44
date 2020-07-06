@@ -89,7 +89,7 @@ reimbursementRouter.get('/author/userId/:id',authorizationMiddleware(['Admin','M
 }
 )
 
-reimbursementRouter.patch('/',  async (req:Request, res:Response, next:NextFunction) => {
+reimbursementRouter.patch('/', authorizationMiddleware(['Admin', 'Manager']), async (req:Request, res:Response, next:NextFunction) => {
     let { reimbursementId,
         author,
         amount,
