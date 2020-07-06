@@ -1,6 +1,12 @@
 create schema project0;
 set schema 'project0';
 
+drop table "Role" cascade;
+drop table "User" cascade;
+drop table "reimbursementStatus" cascade;
+drop table "reimbursementType" cascade;
+drop table "reimbursement" cascade;
+
 CREATE TABLE "Role"
 (
     "roleId" serial primary key,
@@ -58,7 +64,7 @@ insert into "reimbursementType" ("type")
 		
 insert into "Role" ("role") 
 	values ('Admin'),
-			('Manager'),
+			('Finance-Manager'),
 			('User');
 
 insert into "User" ("username", "password", "firstName" , "lastName" , "email" , "role") 

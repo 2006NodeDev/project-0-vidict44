@@ -22,34 +22,39 @@ app.use(loggingMiddleware)// we use use to match everything, no path to match al
 //middleware for tracking connections to our server
 app.use(sessionMiddleware)
 
-
-
-app.use('/reimbursement', reimbursementRouter)
+app.use('/reimbursements', reimbursementRouter)
 app.use('/users', userRouter)// redirect all requests on /users to the router
 
 
+
 // an endpoint that unathenticated users can send credentials to to recieve authentication
+
+
 app.post('/login', async (req:Request, res:Response, next:NextFunction)=>{
     
-    let username = req.body.username
-    let password = req.body.password
+    let {username, password} = req.body; 
+    // let username = req.body.username
+    // let password = req.body.password
     // if I didn't get a usrname/password send an error and say give me both fields
     if(!username || !password){
         // make a custom http error and throw it or just send a res
         throw new BadCredentialsError()
     } else {
         try{
-            let user = await getUserByUsernameAndPassword(username, password)
-            req.session.user = user// need to remeber to add their user data to the session
+            let userFound = await getUserByUsernameAndPassword(username, password)
+            req.session.user = userFound;// need to remeber to add their user data to the session
             // so we can use that data in other requests
-            res.json(user)
+            if(userFound){
+                res.json(userFound)
+            }else{
+                res.status(400).send('Invalid Credentials')
+
+            }
         }catch(e){
             next(e)
         }
     }
 })
-
-
 
 
 

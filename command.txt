@@ -1,3 +1,16 @@
+//no commands for patch
+
+get general user
+http://localhost:2007/user/2
+
+get specific user
+http://localhost:2007/user/2
+
+log in
+{"username": "h.granger",
+"password": "d1ff1cultyL3v3lM4x!"}
+
+
 get to reimbursement with userId for postman
 http://localhost:2007/reimbursement/user/2 
 
